@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactile Archives & Digital Sovereignty | AMPL Labs Training</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <style>
+        :root {
+            --primary-black: #121212;
+            --accent-red: #e63946;
+            --bg-cream: #fdfaf5;
+            --text-main: #1a1a1a;
+            --text-muted: #555;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.7; color: var(--text-main); background-color: var(--bg-cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        .tagline { font-weight: 600; text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; color: var(--accent-red); margin-bottom: 1rem; display: block; }
+
+        nav { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; }
+        header { padding: 80px 0 40px; }
+        h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 2rem; }
+        
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; }
+        .btn { display: inline-block; background: var(--primary-black); color: var(--white); padding: 18px 35px; text-decoration: none; font-weight: 600; transition: 0.3s; margin-top: 20px; border-radius: 2px; width: fit-content; }
+        .btn:hover { background: var(--accent-red); transform: translateY(-2px); }
+
+        .section-padding { padding: 100px 0; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 40px; }
+        .card { background: var(--white); padding: 40px; border: 1px solid #eee; transition: 0.3s; height: 100%; }
+        .card:hover { border-color: var(--accent-red); }
+
+        /* XR Playground Carousel */
+        .xr-playground { background: #000; color: white; padding: 100px 0; }
+        .carousel-container { position: relative; width: 100%; overflow: hidden; margin-bottom: 30px; touch-action: pan-y; }
+        .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.45, 0, 0.55, 1); }
+        .carousel-item { min-width: 100%; padding: 0 5px; }
+        
+        .xr-frame-wrapper { 
+            position: relative; 
+            width: 100%; 
+            height: 600px; 
+            background: radial-gradient(circle, #222 0%, #000 100%);
+            border: 1px solid #333; 
+        }
+
+        model-viewer { width: 100%; height: 100%; --poster-color: transparent; }
+        
+        .ar-button {
+            background: var(--white); border-radius: 4px; border: none;
+            position: absolute; bottom: 20px; right: 20px;
+            padding: 12px 20px; font-weight: 600; color: black; cursor: pointer; z-index: 10;
+        }
+
+        .carousel-nav { display: flex; justify-content: center; gap: 20px; }
+        .nav-btn { background: transparent; color: white; border: 1px solid #444; padding: 10px 20px; cursor: pointer; font-size: 0.7rem; letter-spacing: 1px; }
+
+        footer { background: var(--primary-black); color: white; padding: 80px 0; }
+
+        /* Mobile Optimization Fixes */
+        @media (max-width: 768px) {
+            .hero-grid, .grid-2 { grid-template-columns: 1fr; gap: 30px; }
+            .section-padding { padding: 60px 0; }
+            .opportunity-text { padding: 0; } /* Fixed padding for mobile */
+            .xr-frame-wrapper { height: 400px; }
+            .btn { width: 100%; text-align: center; }
+            header { padding: 40px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="container">
+    <div style="font-weight: 800; letter-spacing: -1px; font-size: 1.2rem;">AMPL LABS (CA)</div>
+    <a href="mailto:hi@mayowatomori.com" style="text-decoration: none; color: black; font-weight: 600; font-size: 0.9rem;">hi@mayowatomori.com</a>
+</nav>
+
+<header class="container">
+    <div class="hero-grid">
+        <div>
+            <span class="tagline">Santa Fe Training | March 18–21, 2026</span>
+            <h1>Tactile Archives & Digital Sovereignty</h1>
+            <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 500px;">A California-led professional intensive in New Mexico. Transforming 3D scanning into a medium for cultural sovereignty and restorative infrastructure.</p>
+            <a href="mailto:hi@mayowatomori.com" class="btn">Apply for the Intensive</a>
+        </div>
+        <div style="background: #eee; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; color: #999;">
+             
+        </div>
+    </div>
+</header>
+
+<section class="container section-padding">
+    <div class="grid-2">
+        <div class="opportunity-text">
+            <span class="tagline">The Opportunity</span>
+            <h2>Resilient Community Archives</h2>
+            <p>This March, join California-based AMPL Labs in Santa Fe for a high-level professional development intensive designed to bridge the gap between creative practice and the museum technology industry. Led by Mayowa Tomori (permanent collection, Smithsonian Design Museum) and Indigenous technologist Monica Silva Lovato, this workshop transforms 3D scanning from a technical tool into a medium for cultural sovereignty and restorative infrastructure.</p>
+            <p style="margin-top:20px;">In an era where cultural heritage is under constant threat of erasure, artists must learn to navigate and collaborate with institutions to create more resilient community archives. This training empowers artists to leverage museum resources to protect their own stories—ensuring that community heritage is not just "stored" but thrives through <strong>Restorative Infrastructure.</strong></p>
+        </div>
+        <div>
+            <div class="card">
+                <h3>A Professional Development Training Intensive</h3>
+                <p>Gain the technical skills and business "know-how" to translate your creative practice into a sustainable revenue stream. This training will help you:</p>
+                <ul style="margin-top:15px; list-style-position: inside; font-size: 0.9rem;">
+                    <li><strong>Technical Mastery:</strong> Learn high-fidelity 3D scanning using accessible tools.</li>
+                    <li><strong>Museum Integration:</strong> Understand how to publish models for AR/Web experiences (Smithsonian Voyager).</li>
+                    <li><strong>Business Strategy:</strong> Position yourself as a vendor and price your services ($2,000+).</li>
+                    <li><strong>Direct Networking:</strong> Connect with professionals at a premier Smithsonian-affiliated institution.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--primary-black); color: white; padding: 100px 0;">
+    <div class="container">
+        <span class="tagline" style="color: white; opacity: 0.6;">Research Case Study</span>
+        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Casting Memories & Loot Merch</h2>
+        <p style="max-width: 800px; margin-bottom: 60px; font-size: 1.1rem; opacity: 0.9;">Participants will engage with methodologies developed during AMPL Labs’ award-winning collaboration with the <strong>Smithsonian Institution</strong> and the <strong>Mozilla Foundation</strong>.</p>
+        
+        <div class="work-grid">
+            <div>
+                <h3 style="color: white; margin-bottom: 10px;">Tactile Innovation</h3>
+                <p style="opacity: 0.7;">Defining a 3D-scanning methodology that moves away from extractive tech and toward restorative infrastructure.</p>
+            </div>
+            <div>
+                <h3 style="color: white; margin-bottom: 10px;">Decolonizing the Archive</h3>
+                <p style="opacity: 0.7;">Using high-resolution 3D modeling to create open-source digital twins that allow communities to reclaim agency.</p>
+            </div>
+            <div>
+                <h3 style="color: white; margin-bottom: 10px;">Institutional Sovereignty</h3>
+                <p style="opacity: 0.7;">Learning how to negotiate with major institutions to ensure community protection is at the center of the process.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container section-padding">
+    <span class="tagline">The Training</span>
+    <h2>Workshop Curriculum</h2>
+    <div class="work-grid">
+        <div class="card">
+            <span style="font-size: 0.8rem; font-weight: 800; color: var(--accent-red);">01: FOUNDATIONS</span>
+            <p style="margin-top:10px;"><strong>XR in Museums:</strong> Innovative uses of 3D/AR/Mixed Reality globally.<br>
+            <strong>Hands-on Scanning:</strong> 3-hour session scanning objects in the MIAC collection.<br>
+            <strong>Regenerative Commons:</strong> Discussion on digital sovereignty and ethical archiving.</p>
+        </div>
+        <div class="card">
+            <span style="font-size: 0.8rem; font-weight: 800; color: var(--accent-red);">02: IMPLEMENTATION</span>
+            <p style="margin-top:10px;"><strong>AR/Web Publishing:</strong> Creating interactive web experiences.<br>
+            <strong>Business Roadmap:</strong> How to build a revenue stream and sell workshops to museums.<br>
+            <strong>Future Vision:</strong> Scaling "small" ideas into massive community impact.</p>
+        </div>
+    </div>
+</section>
+
+<section class="xr-playground">
+    <div class="container">
+        <span class="tagline" style="color: white; opacity: 0.6;">Interactive Digital Sovereignty in Practice</span>
+        <h2 style="color: white; margin-bottom: 20px;">The XR Playground</h2>
+        <p style="max-width: 700px; margin-bottom: 50px; opacity: 0.8;">
+            The digital archive is not a static repository; it is a living, tactile experience. In our XR Playground, we prototype how open-access 3D data can be returned to the web in interactive formats. <strong>On Mobile:</strong> Select an object and tap "View in Space."
+        </p>
+        
+        <div class="carousel-container" id="carousel">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-item">
+                    <div class="xr-frame-wrapper">
+                        <model-viewer src="https://mdotslash.github.io/IAIA-vessel/vessel.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" alt="IAIA Vessel">
+                            <button slot="ar-button" class="ar-button">VIEW IN SPACE</button>
+                        </model-viewer>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; opacity: 0.5;">IAIA Vessel Prototype | High-Res Photogrammetry</p>
+                </div>
+                <div class="carousel-item">
+                    <div class="xr-frame-wrapper">
+                        <model-viewer src="https://mdotslash.github.io/egg-scan/egg.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" alt="Egg Scan">
+                            <button slot="ar-button" class="ar-button">VIEW IN SPACE</button>
+                        </model-viewer>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; opacity: 0.5;">Sgraffito Texture Study | Detailed Surface Scan</p>
+                </div>
+                <div class="carousel-item">
+                    <div class="xr-frame-wrapper">
+                        <model-viewer src="https://mdotslash.github.io/michaels-alebrije/alebrije.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" alt="Alebrije">
+                            <button slot="ar-button" class="ar-button">VIEW IN SPACE</button>
+                        </model-viewer>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; opacity: 0.5;">Alebrije | Cultural Archive Prototype</p>
+                </div>
+                <div class="carousel-item">
+                    <div class="xr-frame-wrapper">
+                        <model-viewer src="https://mdotslash.github.io/kings-head/head.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls auto-rotate shadow-intensity="1" alt="King's Head">
+                            <button slot="ar-button" class="ar-button">VIEW IN SPACE</button>
+                        </model-viewer>
+                    </div>
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; opacity: 0.5;">Benin Bronze | Digital Repatriation Study</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-nav">
+            <button class="nav-btn" onclick="moveCarousel(-1)">PREV</button>
+            <button class="nav-btn" onclick="moveCarousel(1)">NEXT</button>
+        </div>
+    </div>
+</section>
+
+<section class="container section-padding">
+    <div class="grid-2" style="align-items: center;">
+        <div style="background: #eee; height: 350px; display: flex; align-items: center; justify-content: center; color: #999;">
+            
+        </div>
+        <div>
+            <span class="tagline">The Site</span>
+            <h2>Museum of Indian Arts & Culture</h2>
+            <p>MIAC is a premier institution in Santa Fe dedicated to the native arts, histories, and languages of the Greater Southwest. Participants gain direct access to collections and work alongside archivists in a site of collaborative research.</p>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--white); border-top: 1px solid #eee; padding: 100px 0;">
+    <div class="container" style="text-align: center;">
+        <span class="tagline">Enrollment</span>
+        <h2>Funding & Merit Awards</h2>
+        <p style="max-width: 600px; margin: 0 auto 30px;">Accepted participants receive a <strong>$5,000 In-Kind Merit Award</strong> covering tuition and housing. We provide Formal Letters of Support for external travel stipend applications.</p>
+        <a href="mailto:hi@mayowatomori.com" class="btn">Apply to AMPL Labs</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <p><strong>AMPL LABS</strong></p>
+            <p style="opacity: 0.6;">California-based | Santa Fe Residency</p>
+            <p style="font-size: 0.75rem; opacity: 0.4; margin-top: 10px;">c/o Gray Area Foundation for the Arts, 2665 Mission St, San Francisco</p>
+        </div>
+        <div style="text-align: right; opacity: 0.4; font-size: 0.8rem;">
+            &copy; 2026 Mayowa Tomori. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<script>
+    let currentIndex = 0;
+    const track = document.getElementById('carouselTrack');
+    const items = document.querySelectorAll('.carousel-item');
+
+    function moveCarousel(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = items.length - 1;
+        if (currentIndex >= items.length) currentIndex = 0;
+        const offset = currentIndex * -100;
+        track.style.transform = `translateX(${offset}%)`;
+    }
+
+    // Touch Support for Mobile Swiping
+    let startX = 0;
+    document.getElementById('carousel').addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    document.getElementById('carousel').addEventListener('touchend', e => {
+        let diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
+    });
+</script>
+
+</body>
+</html>
