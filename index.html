@@ -18,6 +18,8 @@
         :root {
             --black: #0d0d0d;
             --black-soft: #0a0a0a;
+            --black-deep: #050505;
+            --black-pure: #000;
             --white: #f5f2ea;
 
             --accent: #e8ff47;
@@ -25,6 +27,7 @@
 
             --border: rgba(245, 242, 234, 0.12);
             --border-strong: rgba(232, 255, 71, 0.28);
+            --border-accent: rgba(232, 255, 71, 0.4);
 
             --card-bg: #141414;
 
@@ -36,6 +39,9 @@
 
             --max-width: 1400px;
             --side-gutter: 48px;
+
+            --transition-fast: 0.2s ease;
+            --transition-card: 0.25s;
         }
 
         * {
@@ -91,6 +97,10 @@
             margin: 0 auto;
         }
 
+        .hidden-frame {
+            display: none;
+        }
+
         /* ─── TYPOGRAPHY ─── */
 
         h1,
@@ -109,10 +119,7 @@
         .eyebrow,
         .section-label,
         .card-number,
-        .case-meta,
-        .xr-caption,
-        .nav-link,
-        .footer-meta {
+        .xr-caption {
             text-transform: uppercase;
             letter-spacing: 0.14em;
         }
@@ -200,7 +207,7 @@
 
         .nav-links a {
             color: var(--muted);
-            transition: opacity 0.2s, color 0.2s;
+            transition: opacity var(--transition-fast), color var(--transition-fast);
         }
 
         .nav-links a:hover {
@@ -213,7 +220,7 @@
             padding: 9px 18px;
             font-weight: 500;
             white-space: nowrap;
-            transition: opacity 0.2s;
+            transition: opacity var(--transition-fast);
         }
 
         .nav-contact:hover {
@@ -276,7 +283,7 @@
         }
 
         .hero-title {
-            font-size: clamp(56px, 8vw, 120px);
+            font-size: clamp(50px, 8vw, 120px);
             max-width: 1050px;
             line-height: 0.88;
             letter-spacing: 0.015em;
@@ -289,7 +296,7 @@
         .hero-description {
             max-width: 620px;
             margin-top: 30px;
-            font-size: clamp(17px, 1.4vw, 21px);
+            font-size: clamp(20px, 1.4vw, 24px);
             line-height: 1.7;
             color: var(--muted);
         }
@@ -314,7 +321,10 @@
             font-size: 13px;
             font-weight: 500;
             cursor: pointer;
-            transition: opacity 0.2s, border-color 0.2s, background 0.2s;
+            transition:
+                opacity var(--transition-fast),
+                border-color var(--transition-fast),
+                background var(--transition-fast);
         }
 
         .btn-primary {
@@ -330,11 +340,15 @@
         .btn-secondary {
             background: transparent;
             color: var(--white);
-            border-color: rgba(232, 255, 71, 0.4);
+            border-color: var(--border-accent);
         }
 
         .btn-secondary:hover {
             border-color: var(--accent);
+        }
+
+        .form-submit {
+            align-self: flex-start;
         }
 
         /* ─── OPPORTUNITY ─── */
@@ -348,8 +362,14 @@
             margin-bottom: 64px;
         }
 
-        .opportunity-intro h2 {
+        .opportunity-intro h2,
+        .case-intro h2,
+        .host-copy h2,
+        .contact h2 {
             font-size: clamp(42px, 5vw, 70px);
+        }
+
+        .opportunity-intro h2 {
             margin-bottom: 22px;
         }
 
@@ -359,15 +379,22 @@
             font-size: 18px;
         }
 
-        .training-card {
+        .training-card,
+        .curriculum-card,
+        .case-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 42px;
-            transition: border-color 0.25s;
+            transition: border-color var(--transition-card);
         }
 
-        .training-card:hover {
+        .training-card:hover,
+        .curriculum-card:hover,
+        .case-card:hover {
             border-color: var(--border-strong);
+        }
+
+        .training-card {
+            padding: 42px;
         }
 
         .training-card h3 {
@@ -375,7 +402,8 @@
             margin-bottom: 22px;
         }
 
-        .training-card > p {
+        .training-card > p,
+        .training-list li {
             color: var(--muted);
         }
 
@@ -383,10 +411,6 @@
             padding-left: 24px;
             display: grid;
             gap: 14px;
-        }
-
-        .training-list li {
-            color: var(--muted);
         }
 
         .training-list strong {
@@ -408,15 +432,8 @@
         }
 
         .curriculum-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
             padding: 38px;
             min-height: 300px;
-            transition: border-color 0.25s;
-        }
-
-        .curriculum-card:hover {
-            border-color: var(--border-strong);
         }
 
         .card-number {
@@ -452,7 +469,6 @@
         }
 
         .case-intro h2 {
-            font-size: clamp(42px, 5vw, 70px);
             margin-bottom: 20px;
         }
 
@@ -470,14 +486,7 @@
 
         .case-card {
             padding: 32px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
             min-height: 250px;
-            transition: border-color 0.25s;
-        }
-
-        .case-card:hover {
-            border-color: var(--border-strong);
         }
 
         .case-card h3 {
@@ -496,7 +505,7 @@
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: #000;
+            background: var(--black-pure);
             margin-top: 58px;
             border: 1px solid var(--border);
             overflow: hidden;
@@ -523,7 +532,7 @@
             letter-spacing: 0.08em;
             font-size: 11px;
             cursor: pointer;
-            transition: border-color 0.2s, color 0.2s;
+            transition: border-color var(--transition-fast), color var(--transition-fast);
         }
 
         .mute-btn:hover {
@@ -534,7 +543,7 @@
         /* ─── XR PLAYGROUND ─── */
 
         #xr-playground {
-            background: #050505;
+            background: var(--black-deep);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             padding: 110px var(--side-gutter);
@@ -578,7 +587,12 @@
             width: 100%;
             height: 600px;
             background:
-                radial-gradient(circle at 50% 42%, #1d1d1d 0%, #090909 62%, #000 100%);
+                radial-gradient(
+                    circle at 50% 42%,
+                    #1d1d1d 0%,
+                    #090909 62%,
+                    #000 100%
+                );
             border: 1px solid var(--border);
             position: relative;
         }
@@ -606,7 +620,7 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
             white-space: nowrap;
-            transition: opacity 0.2s;
+            transition: opacity var(--transition-fast);
         }
 
         .ar-button:hover {
@@ -636,7 +650,7 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             font-size: 11px;
-            transition: border-color 0.2s, color 0.2s;
+            transition: border-color var(--transition-fast), color var(--transition-fast);
         }
 
         .nav-btn:hover {
@@ -666,7 +680,7 @@
         }
 
         .host-image {
-            background: #000;
+            background: var(--black-pure);
             overflow: hidden;
             border: 1px solid var(--border);
             aspect-ratio: 4 / 3;
@@ -681,7 +695,6 @@
         }
 
         .host-copy h2 {
-            font-size: clamp(42px, 5vw, 70px);
             margin-bottom: 20px;
         }
 
@@ -721,6 +734,143 @@
 
         .enrollment-action {
             margin-top: 34px;
+        }
+
+        /* ─── CONTACT FORM ─── */
+
+        #contact {
+            background: var(--black);
+        }
+
+        /* .contact-heading {
+            max-width: 900px;
+            margin-bottom: 52px;
+        }*/
+
+        .contact h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 16px;
+            align-items: start;
+        }
+
+        .contact-lede {
+            line-height: 1.75;
+            opacity: 0.65;
+            margin-bottom: 32px;
+        }
+
+        .contact-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .contact-item-label {
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .contact-item-value {
+            opacity: 0.75;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            color: var(--white);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            outline: none;
+            transition: border-color var(--transition-fast);
+            width: 100%;
+            appearance: none;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--border-accent);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23f5f2ea' stroke-width='1.5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-privacy {
+            opacity: 0.5;
+            line-height: 1.5;
+        }
+
+        .form-privacy a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        #form-status {
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        #form-status.success {
+            display: block;
+            border-color: rgba(100, 220, 130, 0.3);
+            color: #64dc82;
+        }
+
+        #form-status.error {
+            display: block;
+            border-color: rgba(232, 80, 80, 0.3);
+            color: #e85050;
         }
 
         /* ─── FOOTER ─── */
@@ -827,6 +977,7 @@
 
         /* ─── MOBILE ─── */
 
+
         @media (max-width: 900px) {
             :root {
                 --side-gutter: 24px;
@@ -901,6 +1052,11 @@
                 margin-top: 42px;
             }
 
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
             .footer-inner {
                 flex-direction: column;
                 align-items: flex-start;
@@ -908,6 +1064,27 @@
 
             .footer-copy {
                 text-align: left;
+            }
+        }
+
+        .mobile-signup {
+            display: none;
+        }
+
+        @media (max-width: 700px) {
+            .mobile-signup {
+                display: block;
+                position: fixed;
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                z-index: 300;
+                text-align: center;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            }
+
+            body {
+                padding-bottom: 84px;
             }
         }
 
@@ -939,6 +1116,7 @@
                 gap: 10px;
             }
         }
+
     </style>
 </head>
 
@@ -954,11 +1132,11 @@
                 <li><a href="#training">Curriculum</a></li>
                 <li><a href="#case-study">Case Study</a></li>
                 <li><a href="#xr-playground">XR Playground</a></li>
-                <!-- <li><a href="#host">Host</a></li> -->
+                <li><a href="#contact">For Teams</a></li>
             </ul>
 
             <a href="mailto:hi@mayowatomori.com" class="nav-contact">
-                Contact
+                Sign Me Up!
             </a>
         </div>
     </nav>
@@ -977,26 +1155,26 @@
 
             <h1 class="hero-title reveal delay-1">
                 <span class="accent">Decolonizing</span>
-                Digital Collections & Archives
+                Digital <br>Collections & Archives
             </h1>
 
             <p class="hero-description reveal delay-2">
-                A professional intensive for artists, and archivists focused on using emerging technology, 3D-Scanning and mixed realities as a medium for innovative cultural collaboration and restorative justice.
+                A professional intensive for artists and archivists focused on using emerging technology, 3D-Scanning and mixed realities as a medium for innovative cultural collaboration and restorative justice.
             </p>
 
             <div class="hero-actions reveal delay-3">
                 <a href="mailto:hi@mayowatomori.com?subject=Interested%20in%20Digital%20Collections%20Intensive&body=Can%20you%20send%20me%20more%20information%3F" class="btn-primary">
-                    Sign Up!
+                    Sign Me Up!
                 </a>
-                <a href="#opportunity" class="btn-secondary">
-                    Learn More
+                <a href="#contact" class="btn-secondary">
+                    For Teams
                 </a>
             </div>
         </div>
     </header>
 
     <!-- OPPORTUNITY -->
-    <section id="opportunity" class="section">
+    <!-- <section id="opportunity" class="section">
         <div class="container">
 
             <div class="section-label">
@@ -1023,7 +1201,7 @@
             </div>
 
             <div class="training-card fade-up">
-                <h3>Training Focus</h3>
+                <h3>Designed and Led by Artists</h3>
 
                 <p>
                     This training is offered by award-winning artist
@@ -1041,18 +1219,18 @@
 
                     <li>
                         <strong>Open-Source Museum Technology:</strong>
-                        Tips for integrating 3D objects files and metadata into your databases using Smithsonian
+                        Tips for integrating 3D content and metadata into your databases using Smithsonian
                         Voyager and other open-source tools.
                     </li>
 
                     <li>
                         <strong>Activating Collections:</strong>
-                        Creative tips for artists, collectives looking to adopt and activate archival content for their creative practices.
+                        Creative tips for artists and researchers looking to adapt and activate archival content in their practice.
                     </li>
 
                     <li>
                         <strong>Ethics &amp; Collaborating with Institutions:</strong>
-                        Practical guides for minimizing harm, take care of your team, and vulnerable communites while
+                        Practical guides for minimizing harm, taking care of your team, and supporting vulnerable communites while
                         working with sensitive collections.
                     </li>
 
@@ -1064,10 +1242,10 @@
                 </ul>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- TRAINING -->
-    <section id="training" class="section">
+    <!-- <section id="training" class="section">
         <div class="container">
 
             <div class="section-label">
@@ -1080,7 +1258,7 @@
                 Workshop Curriculum</h2>
 
                 <p>
-                    The workshop will give you the technical skills for leading <strong>3D and XR</strong> archival research and creative projects in cultural institutions. We can adapt the curriculum to fit your unique use-case or client's needs. 
+                    The intensi will give you the technical skills for leading <strong>3D and XR</strong> archival research and creative projects in cultural institutions. We can adapt the curriculum to fit your unique use-case or client's needs. 
                 </p>
 
             </div>
@@ -1120,84 +1298,77 @@
 
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- RESEARCH CASE STUDY -->
-    <section id="case-study" class="section">
-        <div class="container">
+<!-- TRAINING VIDEO -->
+<section class="section">
+    <div class="video-wrapper fade-up">
+        <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            aria-label="Examples of what artists can create with digital collections and 3D archiving">
+            <source src="hero-video.mp4" type="video/mp4">
+        </video>
+    </div>
+</section>
 
-            <div class="section-label">
-                Research Case Study
-            </div>
 
-            <div class="case-intro fade-up">
-                <h2>Casting Memories:<br>Smithsonian x AMPL Labs</h2>
+<!-- CURRICULUM -->
+<section id="training" class="section">
+    <div class="section-label fade-up">
+        Curriculum
+    </div>
 
-                <p>
-                    In 2022, AMPL Labs led an award-winning collaboration with the
-                    <strong>Smithsonian Institution</strong> and
-                    <strong>Mozilla Foundation</strong> to animate their digital
-                    collections using new forms of storytelling and emerging technology.
-                </p>
-            </div>
+    <div class="curriculum-grid">
 
-            <div class="case-grid">
-
-                <article class="case-card fade-up">
-                    <h3>Cultural Technology for The People</h3>
-                    <p>
-                        We defined an accessible 3D-scanning, archiving methodology that
-                        moves away from extractive tech and toward restorative infrastructure.
-                    </p>
-                </article>
-
-                <article class="case-card fade-up">
-                    <h3>Decolonizing the Archive</h3>
-                    <p>
-                        We led a reparative process that invited artists, technologists
-                        from impacted communities to participate in the co-design,
-                        co-creation, or destruction of archives held by cultural institutions.
-                    </p>
-                </article>
-
-                <article class="case-card fade-up">
-                    <h3>Innovative Possibilities (I.P.)</h3>
-                    <p>
-                        We developed new models for ownership, IP and licensing that make
-                        it easier for artists, program designers, researchers to expand
-                        the impact of their work into their communities.
-                    </p>
-                </article>
-
-            </div>
-
-            <div class="case-video-wrapper">
-                <iframe
-                    id="case-study-vimeo"
-                    src="https://player.vimeo.com/video/573456472?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                    title="Casting Memories: Smithsonian x AMPL Labs"
-                    allow="autoplay; fullscreen"
-                    allowfullscreen>
-                </iframe>
-
-                <button
-                    type="button"
-                    class="mute-btn"
-                    id="vimeo-mute-toggle"
-                    aria-pressed="false">
-                    Unmute Video
-                </button>
-            </div>
-
+        <div class="curriculum-card fade-up">
+            <span class="card-number">01</span>
+            <h3>Digital Archiving</h3>
+            <p>
+                Learn practical approaches to documenting, organizing and preserving
+                digital cultural materials for long-term access and use.
+            </p>
         </div>
-    </section>
+
+        <div class="curriculum-card fade-up">
+            <span class="card-number">02</span>
+            <h3>3D Scanning &amp; Photogrammetry</h3>
+            <p>
+                Explore accessible techniques for capturing physical objects,
+                spaces and materials as high-resolution 3D digital assets.
+            </p>
+        </div>
+
+        <div class="curriculum-card fade-up">
+            <span class="card-number">03</span>
+            <h3>Cultural Sovereignty</h3>
+            <p>
+                Consider who controls cultural data, how digital collections are
+                shared, and how artists can build more ethical archival systems.
+            </p>
+        </div>
+
+        <div class="curriculum-card fade-up">
+            <span class="card-number">04</span>
+            <h3>Restorative Infrastructure</h3>
+            <p>
+                Develop workflows that connect digital preservation with community
+                knowledge, creative practice and long-term cultural stewardship.
+            </p>
+        </div>
+
+    </div>
+</section>
 
     <!-- XR PLAYGROUND -->
     <section id="xr-playground">
         <div class="container">
 
             <div class="section-label">
-                Digital Sovereignty in Practice
+                Try It Yourself
             </div>
 
             <div class="xr-heading fade-up">
@@ -1349,18 +1520,80 @@
         </div>
     </section>
 
+    <!-- CASE STUDY -->
+    <section id="case-study" class="section">
+        <div class="container">
+
+            <div class="section-label">
+                Case Study
+            </div>
+
+            <div class="case-intro fade-up">
+                <h2>Casting Memories:<br>Smithsonian x AMPL Labs</h2>
+
+                <p>
+                    In 2022, AMPL Labs led an award-winning collaboration with the
+                    <strong>Smithsonian Institution</strong> and
+                    <strong>Mozilla Foundation</strong> to animate their digital
+                    collections using new forms of storytelling and emerging technology.
+                </p>
+            </div>
+
+            <div class="case-video-wrapper">
+                <iframe
+                    id="case-study-vimeo"
+                    src="https://player.vimeo.com/video/573456472?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                    title="Casting Memories: Smithsonian x AMPL Labs"
+                    allow="autoplay; fullscreen"
+                    allowfullscreen>
+                </iframe>
+
+                <button
+                    type="button"
+                    class="mute-btn"
+                    id="vimeo-mute-toggle"
+                    aria-pressed="false">
+                    Unmute Video
+                </button>
+            </div>
+
+            <div class="case-grid">
+
+                <article class="case-card fade-up">
+                    <h3>Cultural Technology for The People</h3>
+                    <p>
+                        We defined an accessible 3D-scanning, archiving methodology that
+                        moves away from extractive tech and toward restorative infrastructure.
+                    </p>
+                </article>
+
+                <article class="case-card fade-up">
+                    <h3>Decolonizing the Archive</h3>
+                    <p>
+                        We led a reparative process that invited artists, technologists
+                        from impacted communities to participate in the co-design,
+                        co-creation, or destruction of archives held by cultural institutions.
+                    </p>
+                </article>
+
+                <article class="case-card fade-up">
+                    <h3>Innovative Possibilities (I.P.)</h3>
+                    <p>
+                        We developed new models for ownership, IP and less-exploitative licensing to make it easier for cultural institutions to work with Nigerian artists, program designers, researchers and communities.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+    
+
     <!-- HOST INSTITUTION -->
     <section id="host" class="section">
         <div class="container">
 
             <div class="host-grid">
-
-                <div class="host-image fade-up">
-                    <img
-                        src="assets/images/miac-site.jpg"
-                        alt="Exterior of the Museum of Indian Arts and Culture in Santa Fe, New Mexico"
-                        loading="lazy">
-                </div>
 
                 <div class="host-copy fade-up">
                     <div class="section-label">
@@ -1370,8 +1603,15 @@
                     <h2>In Partnership with World-Class Institutions</h2>
 
                     <p>
-                        The curriculum has been designed with curators and professionals at the Smithsonian Institution, Humboldt Forum, and curators with decades of experience handling sensitive collections. We've also worked with Indigenous communities, UNESCO and vulnerable populations all over to globe to make sure the content is more inclusive and presented through a decolonial lens.
+                        The curriculum has been designed with curators and professionals at the Smithsonian Institution, UNESCO, and curators with decades of experience handling sensitive collections. We've also worked with consultants and artists from Indigenous communities and vulnerable populations around the world to make sure our content is more inclusive.
                     </p>
+                </div>
+
+                <div class="host-image fade-up">
+                    <img
+                        src="assets/images/miac-site.jpg"
+                        alt="Exterior of the Museum of Indian Arts and Culture in Santa Fe, New Mexico"
+                        loading="lazy">
                 </div>
 
             </div>
@@ -1379,6 +1619,7 @@
     </section>
 
     <!-- ENROLLMENT -->
+    <!--
     <section id="enrollment" class="section">
         <div class="container enrollment-inner">
 
@@ -1402,10 +1643,149 @@
 
         </div>
     </section>
+    -->
+
+    <!-- CONTACT FORM -->
+    <section id="contact" class="section">
+        <div class="container">
+
+            <div class="section-label">
+                Customized Training
+            </div>
+
+            <div class="contact fade-up">
+                <h2>Professional Development <br>for Teams</h2>
+            </div>
+
+            <div class="contact-grid">
+
+                <p class="contact-lede fade-up">
+                    We offer custom trainings and workshops for curators and archivists looking to adopt 3D scanning, mixed reality and emerging technology at their institutions. 
+                </p>
+
+                <div class="fade-up">
+
+                    <form
+                        class="contact-form"
+                        id="contact-form"
+                        action="https://script.google.com/macros/s/AKfycbz5YW1sTJ87NTTBv78ux1gq4RJHif7M7FbdoQEPf6eV1jR_zOkiRKxN004jce-y1zxz/exec"
+                        method="POST"
+                        target="contact-submit-frame"
+                        novalidate
+                    >
+                        <input
+                            type="text"
+                            name="website"
+                            class="hidden-frame"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="source"
+                            value="training-page"
+                        >
+
+                        <input
+                            type="hidden"
+                            name="inquiry_type"
+                            value="team_training_inquiry"
+                        >
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label class="form-label" for="fname">
+                                    Name
+                                </label>
+
+                                <input
+                                    class="form-input"
+                                    type="text"
+                                    id="fname"
+                                    name="name"
+                                    required
+                                    placeholder="Jane Smith"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="forg">
+                                    Organization
+                                </label>
+
+                                <input
+                                    class="form-input"
+                                    type="text"
+                                    id="forg"
+                                    name="organization"
+                                    placeholder="Museum / Org / Studio"
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="femail">
+                                Email
+                            </label>
+
+                            <input
+                                class="form-input"
+                                type="email"
+                                id="femail"
+                                name="email"
+                                required
+                                placeholder="you@example.com"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="fmsg">
+                                Tell us a little about your vision
+                            </label>
+
+                            <textarea
+                                class="form-textarea"
+                                id="fmsg"
+                                name="message"
+                                required
+                                placeholder="We're building..."
+                            ></textarea>
+                        </div>
+
+                        <p class="form-privacy">
+                            We use data shared through this form to respond to your inquiry.
+                            We won't ever sell your info.
+                            Learn about our <a href="./privacy.html">Privacy Policy</a>.
+                        </p>
+
+                        <button
+                            class="btn-primary form-submit"
+                            type="submit"
+                        >
+                            Send Message!
+                        </button>
+
+                        <div id="form-status"></div>
+                    </form>
+
+                    <iframe
+                        name="contact-submit-frame"
+                        class="hidden-frame"
+                        title="Contact form submission"
+                    ></iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-inner">
+
             <div>
                 <a
                     href="https://ampllabs.org/"
@@ -1418,12 +1798,20 @@
                     Oakland, CA | Santa Fe, NM
                 </div>
             </div>
-
+<!-- 
             <div class="footer-copy">
                 &copy; 2026 Mayowa Tomori.
-            </div>
+            </div> -->
+
         </div>
     </footer>
+
+    <!-- MOBILE CTA -->
+    <a
+        href="mailto:hi@mayowatomori.com?subject=Interested%20in%20Digital%20Collections%20Intensive&body=Can%20you%20send%20me%20more%20information%3F"
+        class="btn-primary mobile-signup">
+        Sign Up!
+    </a>
 
     <script>
         /* ─── VIMEO ─── */
@@ -1558,6 +1946,52 @@
                 moveCarousel(-1);
             }
         });
+
+        /* ─── CONTACT FORM ─── */
+
+      const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbz5YW1sTJ87NTTBv78ux1gq4RJHif7M7FbdoQEPf6eV1jR_zOkiRKxN004jce-y1zxz/exec";
+
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const form = this;
+        const btn = form.querySelector('button[type="submit"]');
+        const status = document.getElementById('form-status');
+
+        const name = form.querySelector('input[name="name"]').value.trim();
+        const email = form.querySelector('input[name="email"]').value.trim();
+        const message = form.querySelector('textarea[name="message"]').value.trim();
+
+        // Validate required fields
+        if (!name || !email || !message) {
+          status.className = 'error';
+          status.style.display = 'block';
+          status.textContent = 'Please fill out all required fields.';
+          return;
+        }
+
+        // Sending state
+        btn.style.opacity = '0.5';
+        btn.disabled = true;
+
+        status.className = '';
+        status.style.display = 'block';
+        status.textContent = 'Sending...';
+
+        // Submit through the hidden iframe
+        form.submit();
+
+        // Apps Script submission is handled through the iframe,
+        // so show success optimistically after submission.
+        status.className = 'success';
+        status.style.display = 'block';
+        status.textContent = 'Thank you! Mayowa will reach out shortly.';
+
+        form.reset();
+
+        btn.style.opacity = '';
+        btn.disabled = false;
+      });
     </script>
 
 </body>
