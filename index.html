@@ -41,7 +41,7 @@
             --side-gutter: 48px;
 
             --transition-fast: 0.2s ease;
-            --transition-card: 0.25s;
+            --transition-card: 0.25s ease;
         }
 
         * {
@@ -146,7 +146,12 @@
             flex: 0 0 auto;
         }
 
-        .section-headline {
+        .section-headline,
+        .opportunity-intro h2,
+        .case-intro h2,
+        .host-copy h2,
+        .contact-heading h2,
+        .xr-heading h2 {
             font-size: clamp(42px, 5vw, 70px);
         }
 
@@ -362,13 +367,6 @@
             margin-bottom: 64px;
         }
 
-        .opportunity-intro h2,
-        .case-intro h2,
-        .host-copy h2,
-        .contact h2 {
-            font-size: clamp(42px, 5vw, 70px);
-        }
-
         .opportunity-intro h2 {
             margin-bottom: 22px;
         }
@@ -377,6 +375,10 @@
             max-width: 900px;
             color: var(--muted);
             font-size: 18px;
+        }
+
+        .opportunity-video {
+            margin-top: 48px;
         }
 
         .training-card,
@@ -426,7 +428,7 @@
 
         .curriculum-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 2px;
             margin-top: 56px;
         }
@@ -555,7 +557,6 @@
         }
 
         .xr-heading h2 {
-            font-size: clamp(46px, 5.5vw, 76px);
             margin-bottom: 20px;
         }
 
@@ -604,27 +605,28 @@
         }
 
         .ar-button {
-            background: var(--accent);
-            color: var(--black);
+            background: rgba(13, 13, 13, 0.88);
+            color: var(--white);
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             bottom: 20px;
-            padding: 12px 20px;
-            border: 0;
+            padding: 9px 14px;
+            border: 1px solid var(--border);
             border-radius: 0;
             cursor: pointer;
             font-family: 'DM Sans', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             white-space: nowrap;
-            transition: opacity var(--transition-fast);
+            transition: border-color var(--transition-fast), color var(--transition-fast);
         }
 
         .ar-button:hover {
-            opacity: 0.85;
+            color: var(--accent);
+            border-color: var(--accent);
         }
 
         .xr-caption {
@@ -742,10 +744,9 @@
             background: var(--black);
         }
 
-        /* .contact-heading {
-            max-width: 900px;
-            margin-bottom: 52px;
-        }*/
+        .contact-heading {
+            margin-bottom: 16px;
+        }
 
         .contact h2 {
             margin-bottom: 20px;
@@ -977,7 +978,6 @@
 
         /* ─── MOBILE ─── */
 
-
         @media (max-width: 900px) {
             :root {
                 --side-gutter: 24px;
@@ -1067,30 +1067,11 @@
             }
         }
 
-        .mobile-signup {
-            display: none;
-        }
-
-        @media (max-width: 700px) {
-            .mobile-signup {
-                display: block;
-                position: fixed;
-                left: 16px;
-                right: 16px;
-                bottom: 16px;
-                z-index: 300;
-                text-align: center;
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-            }
-
-            body {
-                padding-bottom: 84px;
-            }
-        }
-
         @media (max-width: 560px) {
             .nav-contact {
-                display: none;
+                display: inline-block;
+                font-size: 10px;
+                padding: 7px 10px;
             }
 
             .section-label {
@@ -1117,6 +1098,24 @@
             }
         }
 
+        /* ─── TEMPORARY TRAINING VIDEO ─── */
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--black-pure);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
     </style>
 </head>
 
@@ -1130,12 +1129,12 @@
             <ul class="nav-links">
                 <li><a href="#opportunity">Opportunity</a></li>
                 <li><a href="#training">Curriculum</a></li>
-                <li><a href="#case-study">Case Study</a></li>
                 <li><a href="#xr-playground">XR Playground</a></li>
+                <li><a href="#case-study">Case Study</a></li>
                 <li><a href="#contact">For Teams</a></li>
             </ul>
 
-            <a href="mailto:hi@mayowatomori.com" class="nav-contact">
+            <a href="mailto:hi@mayowatomori.com?subject=Interested%20in%20Digital%20Collections%20Intensive&body=Can%20you%20send%20me%20more%20information%3F" class="nav-contact">
                 Sign Me Up!
             </a>
         </div>
@@ -1159,13 +1158,14 @@
             </h1>
 
             <p class="hero-description reveal delay-2">
-                A professional intensive for artists and archivists focused on using emerging technology, 3D-Scanning and mixed realities as a medium for innovative cultural collaboration and restorative justice.
+                A professional intensive for artists and archivists focused on using emerging technology, mixed reality and creating virtual museums.
             </p>
 
             <div class="hero-actions reveal delay-3">
                 <a href="mailto:hi@mayowatomori.com?subject=Interested%20in%20Digital%20Collections%20Intensive&body=Can%20you%20send%20me%20more%20information%3F" class="btn-primary">
                     Sign Me Up!
                 </a>
+
                 <a href="#contact" class="btn-secondary">
                     For Teams
                 </a>
@@ -1174,7 +1174,7 @@
     </header>
 
     <!-- OPPORTUNITY -->
-    <!-- <section id="opportunity" class="section">
+    <section id="opportunity" class="section">
         <div class="container">
 
             <div class="section-label">
@@ -1183,7 +1183,7 @@
 
             <div class="opportunity-intro fade-up">
                 <h2>
-                    Building Artist-Powered Digital Collections &amp; Cultural Archives
+                    Shape The Future of Digital Cultural Heritage
                 </h2>
 
                 <p>
@@ -1194,33 +1194,49 @@
 
                 <p>
                     The intensive will focus on using accessible 3D scanning technology
-                    and open-source digital collections to preserve and protect
-                    cultural knowledge and explore emergent technology being used for innovative cultural collaborations.
+                    and open-source digital collections to create virtual museums, apps and media for preserving and protecting
+                    cultural knowledge. We'll also explore how emergent technologies can be used for innovative cultural collaboration with vulnerable communities.
                 </p>
+
+                <div class="video-wrapper opportunity-video fade-up">
+                    <video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        aria-label="Examples of what artists can create with digital collections and 3D archiving">
+                        <source src="assets/images/hero-video.mp4" type="video/mp4">
+                    </video>
+                </div>
 
             </div>
 
             <div class="training-card fade-up">
-                <h3>Designed and Led by Artists</h3>
-
+                <h3>Designed and Led by Working Artists</h3>
                 <p>
-                    This training is offered by award-winning artist
-                    <strong>Mayowa Tomori</strong> (AMPL Labs) and Indigenous creative
-                    technologist <strong>Monica Silva Lovato</strong> and will cover technical and creative content, including:
+                    This training is offered by <strong>Mayowa Tomori</strong> (Award-Winning Nigerian-American artist), with additional content provided by <strong>Claudia Miranda</strong> (Mexican-American 3D developer) and <strong>Monica Silva Lovato</strong> (Indigenous creative
+                    technologist from San Felipe / Santo Domingo).
+                </p>
+                <p> 
+                    Together, they will talk about how they use emerging technology to empower cultural researchers in vulnerable communities and decolonize cultural institutions.
+                </p> 
+                <p>
+                    Participants will learn about:
                 </p>
 
                 <br>
 
                 <ul class="training-list">
                     <li>
-                        <strong>Hands-On 3D Scanning:</strong>
-                        Step-by-step training on creating and publishing high-fidelity 3D models for archives.
+                        <strong>3D Scanning:</strong>
+                        Step-by-step hands-on training on creating high-fidelity 3D models for archives.
                     </li>
 
                     <li>
-                        <strong>Open-Source Museum Technology:</strong>
-                        Tips for integrating 3D content and metadata into your databases using Smithsonian
-                        Voyager and other open-source tools.
+                        <strong>Virtual Museum Technology:</strong>
+                        Tips for integrating 3D content and metadata into databases and archives using Smithsonian
+                        Voyager, Murkutu CMS and other open-source tools.
                     </li>
 
                     <li>
@@ -1242,10 +1258,10 @@
                 </ul>
             </div>
         </div>
-    </section> -->
+    </section>
 
-    <!-- TRAINING -->
-    <!-- <section id="training" class="section">
+    <!-- ORIGINAL TRAINING SECTION -->
+    <section id="training" class="section">
         <div class="container">
 
             <div class="section-label">
@@ -1255,26 +1271,26 @@
             <div class="xr-heading fade-up">
 
                 <h2 class="section-headline">
-                Workshop Curriculum</h2>
+                    Workshop Curriculum
+                </h2>
 
                 <p>
-                    The intensi will give you the technical skills for leading <strong>3D and XR</strong> archival research and creative projects in cultural institutions. We can adapt the curriculum to fit your unique use-case or client's needs. 
+                    The intensive will give you the technical skills for leading <strong>3D and XR</strong> archival research and creative projects in cultural institutions. We can also adapt the curriculum to fit your unique use-case or project.
                 </p>
-
             </div>
-
+            
 
             <div class="curriculum-grid">
 
                 <article class="curriculum-card fade-up">
-                    <span class="card-number">01: Foundations</span>
+                    <span class="card-number">01: Foundation</span>
 
-                    <h3>XR in Museums</h3>
+                    <h3>Digitizating Objects in 3D</h3>
 
                     <p>
                         This module covers <strong>use-cases for 3D/AR</strong> in cultural institutions and includes a hands-on <strong>photogrammetry</strong> intensive with a partner cultural institution or private archivist.
                     </p>
-                </article>
+                </article>                
 
                 <article class="curriculum-card fade-up">
                     <span class="card-number">02: Implementation</span>
@@ -1287,81 +1303,107 @@
                 </article>
 
                 <article class="curriculum-card fade-up">
-                    <span class="card-number">03: Innovation</span>
+                    <span class="card-number">03: Expression & Exploration</span>
 
-                    <h3>Regenerative Commons</h3>
+                    <h3>Collaborative Worldbuilding</h3>
 
                     <p>
-                       We'll explore emergent models for <strong>Community Intellectual Property</strong> and ways to scale your visionary ideas for programming and massive community impact.
+                        Explore how that 3D spaces can be used for <strong>Community Collaboration</strong> and self-expression.
+                    </p>
+                </article>
+
+                <article class="curriculum-card fade-up">
+                    <span class="card-number">04: Innovation</span>
+
+                    <h3>Speculative Digital Futures</h3>
+
+                    <p>
+                        Dream up emergent, decolonial and <strong>restorative uses</strong> for digital cultural heritage and archives.
                     </p>
                 </article>
 
             </div>
+
+        </div>
+    </section>
+
+    <!-- TRAINING VIDEO -->
+    
+    <!-- <section class="section">
+        <div class="video-wrapper fade-up">
+            <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="Examples of what artists can create with digital collections and 3D archiving">
+                <source src="assets/images/hero-video.mp4" type="video/mp4">
+            </video>
         </div>
     </section> -->
 
-<!-- TRAINING VIDEO -->
-<section class="section">
-    <div class="video-wrapper fade-up">
-        <video
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-label="Examples of what artists can create with digital collections and 3D archiving">
-            <source src="hero-video.mp4" type="video/mp4">
-        </video>
-    </div>
-</section>
 
-
-<!-- CURRICULUM -->
-<section id="training" class="section">
-    <div class="section-label fade-up">
-        Curriculum
-    </div>
-
-    <div class="curriculum-grid">
-
-        <div class="curriculum-card fade-up">
-            <span class="card-number">01</span>
-            <h3>Digital Archiving</h3>
-            <p>
-                Learn practical approaches to documenting, organizing and preserving
-                digital cultural materials for long-term access and use.
-            </p>
+    <!-- CURRICULUM -->
+   <!--  <section id="training" class="section">
+        <div class="section-label fade-up">
+            Curriculum
         </div>
 
-        <div class="curriculum-card fade-up">
-            <span class="card-number">02</span>
-            <h3>3D Scanning &amp; Photogrammetry</h3>
-            <p>
-                Explore accessible techniques for capturing physical objects,
-                spaces and materials as high-resolution 3D digital assets.
-            </p>
+        <div class="curriculum-grid">
+             <h2>Designed and Led by Artists</h2>
         </div>
+        <p>
+                    This training is offered by award-winning artist
+                    <strong>Mayowa Tomori</strong> (AMPL Labs) and Indigenous creative
+                    technologist <strong>Monica Silva Lovato</strong> and will cover technical and creative content, including:
+                </p>
+            <div class="curriculum-card fade-up">
+                <span class="card-number">01</span>
 
-        <div class="curriculum-card fade-up">
-            <span class="card-number">03</span>
-            <h3>Cultural Sovereignty</h3>
-            <p>
-                Consider who controls cultural data, how digital collections are
-                shared, and how artists can build more ethical archival systems.
-            </p>
+                <h3>Digital Archiving</h3>
+
+                <p>
+                    Learn practical approaches to documenting, organizing and preserving
+                    digital cultural materials for long-term access and use.
+                </p>
+            </div>
+
+            <div class="curriculum-card fade-up">
+                <span class="card-number">02</span>
+
+                <h3>3D Scanning &amp; Photogrammetry</h3>
+
+                <p>
+                    Explore accessible techniques for capturing physical objects,
+                    spaces and materials as high-resolution 3D digital assets.
+                </p>
+            </div>
+
+            <div class="curriculum-card fade-up">
+                <span class="card-number">03</span>
+
+                <h3>Cultural Sovereignty</h3>
+
+                <p>
+                    Consider who controls cultural data, how digital collections are
+                    shared, and how artists can build more ethical archival systems.
+                </p>
+            </div>
+
+            <div class="curriculum-card fade-up">
+                <span class="card-number">04</span>
+
+                <h3>Restorative Infrastructure</h3>
+
+                <p>
+                    Develop workflows that connect digital preservation with community
+                    knowledge, creative practice and long-term cultural stewardship.
+                </p>
+            </div>
+
         </div>
-
-        <div class="curriculum-card fade-up">
-            <span class="card-number">04</span>
-            <h3>Restorative Infrastructure</h3>
-            <p>
-                Develop workflows that connect digital preservation with community
-                knowledge, creative practice and long-term cultural stewardship.
-            </p>
-        </div>
-
-    </div>
-</section>
+    </section> -->
 
     <!-- XR PLAYGROUND -->
     <section id="xr-playground">
@@ -1373,7 +1415,10 @@
 
             <div class="xr-heading fade-up">
                 <h2>The XR Playground</h2>
-                <p>Experience 3D and mixed reality created by training participants and partner institutions.</p>
+
+                <p>
+                    Experience 3D and mixed reality created by training participants and partner institutions using your mobile device (or headset).
+                </p>
             </div>
 
             <div class="carousel-container">
@@ -1407,7 +1452,7 @@
                                     slot="ar-button"
                                     class="ar-button"
                                     type="button">
-                                    View in Space
+                                    View in My Space
                                 </button>
                             </model-viewer>
                         </div>
@@ -1443,7 +1488,7 @@
                                     slot="ar-button"
                                     class="ar-button"
                                     type="button">
-                                    View in Space
+                                    View in My Space
                                 </button>
                             </model-viewer>
                         </div>
@@ -1479,7 +1524,7 @@
                                     slot="ar-button"
                                     class="ar-button"
                                     type="button">
-                                    View in Space
+                                    View in My Space
                                 </button>
                             </model-viewer>
                         </div>
@@ -1561,6 +1606,7 @@
 
                 <article class="case-card fade-up">
                     <h3>Cultural Technology for The People</h3>
+
                     <p>
                         We defined an accessible 3D-scanning, archiving methodology that
                         moves away from extractive tech and toward restorative infrastructure.
@@ -1569,6 +1615,7 @@
 
                 <article class="case-card fade-up">
                     <h3>Decolonizing the Archive</h3>
+
                     <p>
                         We led a reparative process that invited artists, technologists
                         from impacted communities to participate in the co-design,
@@ -1578,6 +1625,7 @@
 
                 <article class="case-card fade-up">
                     <h3>Innovative Possibilities (I.P.)</h3>
+
                     <p>
                         We developed new models for ownership, IP and less-exploitative licensing to make it easier for cultural institutions to work with Nigerian artists, program designers, researchers and communities.
                     </p>
@@ -1587,7 +1635,6 @@
 
         </div>
     </section>
-    
 
     <!-- HOST INSTITUTION -->
     <section id="host" class="section">
@@ -1596,8 +1643,9 @@
             <div class="host-grid">
 
                 <div class="host-copy fade-up">
+
                     <div class="section-label">
-                        The Host 
+                        The Host
                     </div>
 
                     <h2>In Partnership with World-Class Institutions</h2>
@@ -1653,14 +1701,14 @@
                 Customized Training
             </div>
 
-            <div class="contact fade-up">
+            <div class="contact-heading fade-up">
                 <h2>Professional Development <br>for Teams</h2>
             </div>
 
             <div class="contact-grid">
 
                 <p class="contact-lede fade-up">
-                    We offer custom trainings and workshops for curators and archivists looking to adopt 3D scanning, mixed reality and emerging technology at their institutions. 
+                    We offer custom trainings and workshops for curators and archivists looking to adopt 3D scanning, mixed reality and emerging technology at their institutions.
                 </p>
 
                 <div class="fade-up">
@@ -1761,8 +1809,7 @@
 
                         <button
                             class="btn-primary form-submit"
-                            type="submit"
-                        >
+                            type="submit">
                             Send Message!
                         </button>
 
@@ -1772,8 +1819,8 @@
                     <iframe
                         name="contact-submit-frame"
                         class="hidden-frame"
-                        title="Contact form submission"
-                    ></iframe>
+                        title="Contact form submission">
+                    </iframe>
 
                 </div>
 
@@ -1798,20 +1845,15 @@
                     Oakland, CA | Santa Fe, NM
                 </div>
             </div>
-<!-- 
+
+            <!--
             <div class="footer-copy">
                 &copy; 2026 Mayowa Tomori.
-            </div> -->
+            </div>
+            -->
 
         </div>
     </footer>
-
-    <!-- MOBILE CTA -->
-    <a
-        href="mailto:hi@mayowatomori.com?subject=Interested%20in%20Digital%20Collections%20Intensive&body=Can%20you%20send%20me%20more%20information%3F"
-        class="btn-primary mobile-signup">
-        Sign Up!
-    </a>
 
     <script>
         /* ─── VIMEO ─── */
@@ -1949,49 +1991,49 @@
 
         /* ─── CONTACT FORM ─── */
 
-      const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbz5YW1sTJ87NTTBv78ux1gq4RJHif7M7FbdoQEPf6eV1jR_zOkiRKxN004jce-y1zxz/exec";
+        const CONTACT_ENDPOINT = "https://script.google.com/macros/s/AKfycbz5YW1sTJ87NTTBv78ux1gq4RJHif7M7FbdoQEPf6eV1jR_zOkiRKxN004jce-y1zxz/exec";
 
-      document.getElementById('contact-form').addEventListener('submit', function(e) {
-        e.preventDefault();
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-        const form = this;
-        const btn = form.querySelector('button[type="submit"]');
-        const status = document.getElementById('form-status');
+            const form = this;
+            const btn = form.querySelector('button[type="submit"]');
+            const status = document.getElementById('form-status');
 
-        const name = form.querySelector('input[name="name"]').value.trim();
-        const email = form.querySelector('input[name="email"]').value.trim();
-        const message = form.querySelector('textarea[name="message"]').value.trim();
+            const name = form.querySelector('input[name="name"]').value.trim();
+            const email = form.querySelector('input[name="email"]').value.trim();
+            const message = form.querySelector('textarea[name="message"]').value.trim();
 
-        // Validate required fields
-        if (!name || !email || !message) {
-          status.className = 'error';
-          status.style.display = 'block';
-          status.textContent = 'Please fill out all required fields.';
-          return;
-        }
+            // Validate required fields
+            if (!name || !email || !message) {
+                status.className = 'error';
+                status.style.display = 'block';
+                status.textContent = 'Please fill out all required fields.';
+                return;
+            }
 
-        // Sending state
-        btn.style.opacity = '0.5';
-        btn.disabled = true;
+            // Sending state
+            btn.style.opacity = '0.5';
+            btn.disabled = true;
 
-        status.className = '';
-        status.style.display = 'block';
-        status.textContent = 'Sending...';
+            status.className = '';
+            status.style.display = 'block';
+            status.textContent = 'Sending...';
 
-        // Submit through the hidden iframe
-        form.submit();
+            // Submit through the hidden iframe
+            form.submit();
 
-        // Apps Script submission is handled through the iframe,
-        // so show success optimistically after submission.
-        status.className = 'success';
-        status.style.display = 'block';
-        status.textContent = 'Thank you! Mayowa will reach out shortly.';
+            // Apps Script submission is handled through the iframe,
+            // so show success optimistically after submission.
+            status.className = 'success';
+            status.style.display = 'block';
+            status.textContent = 'Thank you! Mayowa will reach out shortly.';
 
-        form.reset();
+            form.reset();
 
-        btn.style.opacity = '';
-        btn.disabled = false;
-      });
+            btn.style.opacity = '';
+            btn.disabled = false;
+        });
     </script>
 
 </body>
